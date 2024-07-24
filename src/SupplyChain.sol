@@ -17,13 +17,14 @@ contract SupplyChain {
         State state;
     }
 
-    mapping (uint => Product) public products;
+    mapping(uint => Product) public products;
     uint private nextProductId;
 
     // Event tanımlamaları
     event ProductCreated(uint indexed productId, string locationInfo, uint productionDate, uint backupProductionDate, uint expirationDate);
     event ProductUpdated(uint indexed productId, string locationInfo, uint productionDate, uint backupProductionDate, uint expirationDate, State state);
     event ProductStateChanged(uint indexed productId, State newState, string newLocation);
+    event ProductDeleted(uint indexed productId);
 
     // Ürün oluşturma fonksiyonu
     function createProduct(string memory _locationInfo, uint _productionDate, uint _expirationDate) external {
@@ -60,6 +61,7 @@ contract SupplyChain {
     }
 
     // Kullanıcı ürün bilgilerini sorgulama fonksiyonu
+    // Bu fonksiyon sadece veri okuduğu için bir event emit etmez.
     function viewProductInfo(uint _productId) external view returns (uint, string memory, uint, uint, uint, State) {
         Product storage product = products[_productId];
         return (product.id, product.locationInfo, product.productionDate, product.backupProductionDate, product.expirationDate, product.state);
@@ -68,5 +70,6 @@ contract SupplyChain {
     // Ürün bilgilerini silme fonksiyonu
     function deleteProduct(uint _productId) external {
         delete products[_productId];
+        emit ProductDeleted(_productId);
     }
 }

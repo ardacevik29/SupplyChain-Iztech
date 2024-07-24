@@ -1,0 +1,308 @@
+[
+  {
+    "type": "function",
+    "name": "createProduct",
+    "inputs": [
+      {
+        "name": "_locationInfo",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "_productionDate",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_expirationDate",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "deleteProduct",
+    "inputs": [
+      {
+        "name": "_productId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "delivered",
+    "inputs": [
+      {
+        "name": "_productId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "inWarehouse",
+    "inputs": [
+      {
+        "name": "_productId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_newLocation",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "products",
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "id",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "locationInfo",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "productionDate",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "backupProductionDate",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "expirationDate",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "state",
+        "type": "uint8",
+        "internalType": "enum SupplyChain.State"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "updateProduct",
+    "inputs": [
+      {
+        "name": "_productId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_newLocationInfo",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "_newProductionDate",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_newExpirationDate",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_newState",
+        "type": "uint8",
+        "internalType": "enum SupplyChain.State"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "viewProductInfo",
+    "inputs": [
+      {
+        "name": "_productId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "enum SupplyChain.State"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "ProductCreated",
+    "inputs": [
+      {
+        "name": "productId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "locationInfo",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "productionDate",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "backupProductionDate",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "expirationDate",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ProductDeleted",
+    "inputs": [
+      {
+        "name": "productId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ProductStateChanged",
+    "inputs": [
+      {
+        "name": "productId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "newState",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum SupplyChain.State"
+      },
+      {
+        "name": "newLocation",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ProductUpdated",
+    "inputs": [
+      {
+        "name": "productId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "locationInfo",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "productionDate",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "backupProductionDate",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "expirationDate",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "state",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum SupplyChain.State"
+      }
+    ],
+    "anonymous": false
+  }
+]

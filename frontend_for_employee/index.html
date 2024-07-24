@@ -7,63 +7,56 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Supply Chain DApp</h1>
-    </header>
-    <main>
-        <section>
+    <div id="app">
+        <h1>Supply Chain</h1>
+
+        <form id="createProductForm">
             <h2>Create Product</h2>
-            <form id="createProductForm">
-                <label for="locationInfo">Location Info:</label>
-                <input type="text" id="locationInfo" required>
-                
-                <label for="productionDate">Production Date:</label>
-                <input type="date" id="productionDate" required>
-                
-                <label for="expirationDate">Expiration Date:</label>
-                <input type="date" id="expirationDate" required>
-                
-                <button type="submit">Create Product</button>
-            </form>
-        </section>
+            <label for="locationInfo">Location Info:</label>
+            <input type="text" id="locationInfo" required>
+            <label for="productionDate">Production Date:</label>
+            <input type="date" id="productionDate" required>
+            <label for="expirationDate">Expiration Date:</label>
+            <input type="date" id="expirationDate" required>
+            <button type="submit">Create Product</button>
+        </form>
 
-        <section>
+        <form id="updateProductForm">
             <h2>Update Product</h2>
-            <form id="updateProductForm">
-                <label for="productId">Product ID:</label>
-                <input type="number" id="productId" required>
-                
-                <label for="newLocationInfo">New Location Info:</label>
-                <input type="text" id="newLocationInfo" required>
-                
-                <label for="newProductionDate">New Production Date:</label>
-                <input type="date" id="newProductionDate" required>
-                
-                <label for="newExpirationDate">New Expiration Date:</label>
-                <input type="date" id="newExpirationDate" required>
-                
-                <label for="newState">New State:</label>
-                <select id="newState" required>
-                    <option value="0">Produced</option>
-                    <option value="1">In Warehouse</option>
-                    <option value="2">Delivered</option>
-                </select>
-                
-                <button type="submit">Update Product</button>
-            </form>
-        </section>
+            <label for="productId">Product ID:</label>
+            <input type="text" id="productId" required>
+            <label for="newLocationInfo">New Location Info:</label>
+            <input type="text" id="newLocationInfo" required>
+            <label for="newProductionDate">New Production Date:</label>
+            <input type="date" id="newProductionDate" required>
+            <label for="newExpirationDate">New Expiration Date:</label>
+            <input type="date" id="newExpirationDate" required>
+            <label for="newState">New State:</label>
+            <select id="newState" required>
+                <option value="0">Produced</option>
+                <option value="1">In Warehouse</option>
+                <option value="2">Delivered</option>
+            </select>
+            <button type="submit">Update Product</button>
+        </form>
 
-        <section>
-            <h2>Product Information</h2>
-            <form id="viewProductForm">
-                <label for="viewProductId">Product ID:</label>
-                <input type="number" id="viewProductId" required>
-                <button type="submit">View Product Info</button>
-            </form>
-            <div id="productInfo"></div>
-        </section>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+        <form id="viewProductForm">
+            <h2>View Product</h2>
+            <label for="viewProductId">Product ID:</label>
+            <input type="text" id="viewProductId" required>
+            <button type="submit">View Product</button>
+        </form>
+
+        <form id="deleteProductForm">
+            <h2>Delete Product</h2>
+            <label for="deleteProductId">Product ID:</label>
+            <input type="text" id="deleteProductId" required>
+            <button type="submit">Delete Product</button>
+        </form>
+
+        <div id="productInfo"></div>
+    </div>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
