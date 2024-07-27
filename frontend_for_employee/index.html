@@ -8,53 +8,71 @@
 </head>
 <body>
     <div id="app">
-        <h1>Supply Chain</h1>
+        <div>
+            <form id="createProductForm">
+                <h2>Create Product</h2>
+                <label for="locationInfo">Location Info:</label>
+                <input type="text" id="locationInfo" required>
+                <label for="productionDate">Production Date:</label>
+                <input type="date" id="productionDate" required>
+                <label for="expirationDate">Expiration Date:</label>
+                <input type="date" id="expirationDate" required>
+                <button type="submit">Create Product</button>
+            </form>
 
-        <form id="createProductForm">
-            <h2>Create Product</h2>
-            <label for="locationInfo">Location Info:</label>
-            <input type="text" id="locationInfo" required>
-            <label for="productionDate">Production Date:</label>
-            <input type="date" id="productionDate" required>
-            <label for="expirationDate">Expiration Date:</label>
-            <input type="date" id="expirationDate" required>
-            <button type="submit">Create Product</button>
-        </form>
+            <form id="updateProductForm">
+                <h2>Update Product</h2>
+                <label for="productId">Product ID:</label>
+                <input type="text" id="productId" required>
+                <label for="newLocationInfo">New Location Info:</label>
+                <input type="text" id="newLocationInfo" required>
+                <label for="newProductionDate">New Production Date:</label>
+                <input type="date" id="newProductionDate" required>
+                <label for="newExpirationDate">New Expiration Date:</label>
+                <input type="date" id="newExpirationDate" required>
+                <label for="newState">New State:</label>
+                <select id="newState" required>
+                    <option value="0">Produced</option>
+                    <option value="1">In Warehouse</option>
+                    <option value="2">Delivered</option>
+                </select>
+                <button type="submit">Update Product</button>
+            </form>
 
-        <form id="updateProductForm">
-            <h2>Update Product</h2>
-            <label for="productId">Product ID:</label>
-            <input type="text" id="productId" required>
-            <label for="newLocationInfo">New Location Info:</label>
-            <input type="text" id="newLocationInfo" required>
-            <label for="newProductionDate">New Production Date:</label>
-            <input type="date" id="newProductionDate" required>
-            <label for="newExpirationDate">New Expiration Date:</label>
-            <input type="date" id="newExpirationDate" required>
-            <label for="newState">New State:</label>
-            <select id="newState" required>
-                <option value="0">Produced</option>
-                <option value="1">In Warehouse</option>
-                <option value="2">Delivered</option>
-            </select>
-            <button type="submit">Update Product</button>
-        </form>
+            <form id="viewProductForm">
+                <h2>View Product</h2>
+                <label for="viewProductId">Product ID:</label>
+                <input type="text" id="viewProductId" required>
+                <button type="submit">View Product</button>
+            </form>
+        </div>
 
-        <form id="viewProductForm">
-            <h2>View Product</h2>
-            <label for="viewProductId">Product ID:</label>
-            <input type="text" id="viewProductId" required>
-            <button type="submit">View Product</button>
-        </form>
+        <div>
+            <form id="deleteProductForm">
+                <h2>Delete Product</h2>
+                <label for="deleteProductId">Product ID:</label>
+                <input type="text" id="deleteProductId" required>
+                <button type="submit">Delete Product</button>
+            </form>
 
-        <form id="deleteProductForm">
-            <h2>Delete Product</h2>
-            <label for="deleteProductId">Product ID:</label>
-            <input type="text" id="deleteProductId" required>
-            <button type="submit">Delete Product</button>
-        </form>
+            <form id="inWarehouseForm">
+                <h2>Mark as In Warehouse</h2>
+                <label for="warehouseProductId">Product ID:</label>
+                <input type="text" id="warehouseProductId" required>
+                <label for="warehouseLocationInfo">New Location Info:</label>
+                <input type="text" id="warehouseLocationInfo" required>
+                <button type="submit">Mark as In Warehouse</button>
+            </form>
 
-        <div id="productInfo"></div>
+            <form id="deliveredForm">
+                <h2>Mark as Delivered</h2>
+                <label for="deliveredProductId">Product ID:</label>
+                <input type="text" id="deliveredProductId" required>
+                <button type="submit">Mark as Delivered</button>
+            </form>
+
+            <div id="productInfo"></div>
+        </div>
     </div>
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
     <script src="index.js"></script>
