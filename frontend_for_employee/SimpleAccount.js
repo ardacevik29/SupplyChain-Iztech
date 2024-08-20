@@ -21,7 +21,7 @@ const bundlerUrl = "https://bundler.biconomy.io/api/v2/{11155111(0xaa36a7)}/nJPK
 // SimpleAccountAPI oluşturulması
 const accountAPIs = ownerWallets.map(wallet => new SimpleAccountAPI({
     provider,              // RPC Provider
-    entryPointAddress: "0x84C98E6a749727b61c3771392f569d5DDd8413BF", // ERC-4337 EntryPoint kontratının adresi
+    entryPointAddress: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512", // ERC-4337 EntryPoint kontratının adresi
     owner: wallet,         // Yazar cüzdanı
     bundlerUrl             // Bundler URL'si
 }));
