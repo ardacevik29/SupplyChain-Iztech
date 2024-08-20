@@ -60,7 +60,7 @@ contract SupplyChainTest is Test {
         string memory newLocation = "Warehouse B";
         supplyChain.inWarehouse(0, newLocation);
 
-        ( ,, uint, uint, uint, SupplyChain.State, state,) = supplyChain.viewProductInfo(0);
+        ( ,, uint, uint, uint, SupplyChain.State state) = supplyChain.viewProductInfo(0);
 
         assertEq(uint(state), uint(SupplyChain.State.InWarehouse));
     }
