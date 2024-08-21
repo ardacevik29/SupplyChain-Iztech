@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { UserOperation, BundlerProvider } from '@account-abstraction/sdk';
-import { accountAPIs } from './simpleaccount'; // Import yaptığınız accountAPIs
+import { accountAPIs } from './SimpleAccount'; // Import yaptığınız accountAPIs
 
 document.addEventListener('DOMContentLoaded', async () => {
     if (typeof window.ethereum !== 'undefined') {

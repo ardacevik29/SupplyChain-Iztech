@@ -10,7 +10,7 @@ const provider = new JsonRpcProvider(rpcUrl);
 
 // Yazar cüzdanları (Ethereum cüzdanları)
 const ownerWallets = [
-    new ethers.Wallet("275cc69a6d5665957cffe57fc0ff4cfc4f4694623d296be14e9cbad09b856b32", provider),
+    new ethers.Wallet("939aacf7f57d0d6fb514fa6f6966d72c643b53f3e47d4124fd129bca38aa2c9f", provider),
     new ethers.Wallet("PRIVATE_KEY_2", provider),
     // Daha fazla cüzdan ekleyebilirsiniz
 ];

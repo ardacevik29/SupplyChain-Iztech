@@ -41,10 +41,9 @@
 </head>
 <body>
     <div id="loginContainer">
-        <h2>Enter Your ID</h2>
+        <h2>Login to Your Wallet</h2>
         <form id="loginForm">
-            <input type="text" id="idNumber" placeholder="Enter ID..." required>
-            <button type="submit">Login</button>
+            <button type="submit">Connect Wallet</button>
         </form>
     </div>
 
@@ -72,59 +71,7 @@
         <div id="productDetails"></div>
     </div>
 
-    <!-- Correct placement of the script tags -->
-    <script src="index.js"></script>
-
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            const idNumber = document.getElementById("idNumber").value;
-            const loginContainer = document.getElementById("loginContainer");
-            const ownerInterface = document.getElementById("ownerInterface");
-            const viewerInterface = document.getElementById("viewerInterface");
-
-            if (ownerAddresses[idNumber] !== undefined) {
-                loginContainer.style.display = "none";
-                ownerInterface.style.display = "block";
-            } else {
-                loginContainer.style.display = "none";
-                viewerInterface.style.display = "block";
-            }
-        });
-
-        document.getElementById("createProductForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-            const productId = document.getElementById("productId").value;
-            const locationInfo = document.getElementById("locationInfo").value;
-            const productionDate = document.getElementById("productionDate").value;
-            const expirationDate = document.getElementById("expirationDate").value;
-
-            // Owner arayüzü üzerinden ürün oluşturma işlemi
-            try {
-                const tx = await supplyChainContract.createProduct(productId, locationInfo, productionDate, expirationDate);
-                console.log('Transaction Hash:', tx.hash);
-                await tx.wait();
-                alert('Product created successfully');
-            } catch (error) {
-                console.error('Failed to create product:', error);
-                alert('Failed to create product. Please check the console for details.');
-            }
-        });
-
-        document.getElementById("viewProductForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-            const productId = document.getElementById("productId").value;
-
-            // Viewer arayüzü üzerinden ürün detaylarını görüntüleme
-            try {
-                const productDetails = await getProduct(productId);
-                displayProductDetails(productDetails);
-            } catch (error) {
-                console.error('Failed to fetch product:', error);
-                alert('Failed to fetch product. Please check the console for details.');
-            }
-        });
-    </script>
+    <!-- Include the index.js script as a module -->
+    <script type="module" src="index.js"></script>
 </body>
 </html>
