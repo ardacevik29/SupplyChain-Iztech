@@ -33,12 +33,11 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar">
-        <div
-          className={`hamburger ${isOpen ? "open" : ""}`}
-          onClick={toggleMenu}
-        >
-          ☰
-        </div>
+        {!isOpen && (
+          <div className="hamburger" onClick={toggleMenu}>
+            ☰
+          </div>
+        )}
         <div className="title">Supply Chain</div>
         <button className="wallet-info" onClick={connectWallet}>
           {account
@@ -47,14 +46,15 @@ const Navbar = () => {
         </button>
       </nav>
 
-      {isOpen && (
-        <div className="menu-overlay">
-          <div className="side-menu">
-            <button className="menu-item">Update Product</button>
-            <button className="menu-item">Delete Product</button>
-          </div>
+      <div className={`side-menu ${isOpen ? "open" : ""}`}>
+        <div className="close-btn" onClick={toggleMenu}>
+          &times;
         </div>
-      )}
+        <button className="menu-item">Update Product</button>
+        <button className="menu-item">Delete Product</button>
+      </div>
+
+      {isOpen && <div className="overlay" onClick={toggleMenu}></div>}
     </>
   );
 };

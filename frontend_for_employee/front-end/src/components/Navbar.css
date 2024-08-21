@@ -1,5 +1,6 @@
+/* Navbar Stilleri */
 .navbar {
-  display: inline-flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
@@ -9,82 +10,87 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; /* Ensures the navbar stays on top */
+  z-index: 1000; /* Navbar'ın en üstte görünmesini sağlar */
 }
 
 .hamburger {
   cursor: pointer;
   font-size: 24px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.hamburger.open {
-  transform: rotate(90deg); /* Simple rotation animation */
+  z-index: 1200; /* Hamburger ikonunun menüden önce görünmesini sağlar */
+  position: relative; /* Z-index'in düzgün çalışması için pozisyon belirtiyoruz */
 }
 
 .title {
-  font-size: 18px;
-  text-align: center;
-  flex-grow: 1;
+  font-size: 20px;
+  font-weight: bold;
+  flex-grow: 1; /* Başlığın boş alanı doldurmasını sağlar */
+  text-align: center; /* Başlığı ortalar */
+  flex-shrink: 0; /* Başlığın boyutunun küçülmesini engeller */
 }
 
-.connect-wallet {
+.wallet-info {
   cursor: pointer;
   font-size: 16px;
+  color: #ff9800;
+  background-color: transparent;
+  border: 1px solid #ff9800;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-right: 3.5%;
 }
 
-.menu-overlay {
+/* Side Menu Stilleri */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Başlangıçta ekranın dışında */
+  width: 250px;
+  height: 100%;
+  background-color: #222;
+  padding: 60px 20px 20px 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: left 0.4s ease; /* Soldan kayarak açılma animasyonu */
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu.open {
+  left: 0; /* Menünün soldan kayarak açılması */
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-item {
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding: 15px 0;
+  text-align: left;
+  font-size: 18px;
+  cursor: pointer;
+  width: 100%;
+  transition: color 0.3s;
+}
+
+.menu-item:hover {
+  color: #ff9800;
+}
+
+/* Overlay Stili */
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(8px); /* Creates the blur effect */
-  z-index: 999; /* Ensures the overlay stays above the navbar */
-}
-
-.side-menu {
-  position: fixed;
-  top: 60px; /* Adjust according to navbar height */
-  left: 0;
-  width: 200px;
-  height: calc(100% - 60px); /* Adjust according to navbar height */
-  background-color: rgba(51, 51, 51, 0.9);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.menu-item {
-  display: block;
-  padding: 10px 20px;
-  width: 100%;
-  text-align: left;
-  background-color: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.menu-item:hover {
-  background-color: #444;
-}
-.wallet-info {
-  cursor: pointer;
-  font-size: 16px;
-  color: #ff9800;
-  transition: color 0.3s;
-  padding: 5px 10px;
-  background-color: #333;
-  border-radius: 5px;
-  border: 1px solid #ff9800;
-  margin-right: 4%; /* Aligns the button to the left */
-}
-
-.wallet-info:hover {
-  color: #ffc107;
-  border-color: #ffc107;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
 }
