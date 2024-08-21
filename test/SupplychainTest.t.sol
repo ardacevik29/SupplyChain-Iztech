@@ -17,7 +17,13 @@ contract SupplyChainTest is Test {
         supplyChain.createProduct(1, "Location A", 1000000, 2000000);
 
         // Ürün bilgilerini getProduct fonksiyonuna bakarak kontrol etme
-        (uint32 id, string memory locationInfo, uint32 productionDate, uint32 expirationDate, SupplyChain.State state) = supplyChain.getProduct(1);
+        (
+            uint32 id,
+            string memory locationInfo,
+            uint32 productionDate,
+            uint32 expirationDate,
+            SupplyChain.State state
+        ) = supplyChain.getProduct(1);
 
         // Test sonuçlarını doğrulama
         assertEq(id, 1);
@@ -32,7 +38,9 @@ contract SupplyChainTest is Test {
         supplyChain.createProduct(2, "Location B", 1000000, 2000000);
 
         // Aynı ID ile tekrar ürün oluşturmaya çalışmak hata verecek
-        vm.expectRevert(abi.encodeWithSelector(SupplyChain.ProductAlreadyExists.selector, 2));
+        vm.expectRevert(
+            abi.encodeWithSelector(SupplyChain.ProductAlreadyExists.selector, 2)
+        );
         supplyChain.createProduct(2, "Location B Duplicate", 1000000, 2000000);
     }
 
@@ -41,10 +49,22 @@ contract SupplyChainTest is Test {
         supplyChain.createProduct(3, "Location C", 1000000, 2000000);
 
         // Ürünü güncelleme
-        supplyChain.updateProduct(3, "Updated Location", 3000000, 4000000, SupplyChain.State.InWarehouse);
+        supplyChain.updateProduct(
+            3,
+            "Updated Location",
+            3000000,
+            4000000,
+            SupplyChain.State.InWarehouse
+        );
 
         // Ürün bilgilerini getProduct fonksiyonuna bakarak kontrol etme
-        (uint32 id, string memory locationInfo, uint32 productionDate, uint32 expirationDate, SupplyChain.State state) = supplyChain.getProduct(3);
+        (
+            uint32 id,
+            string memory locationInfo,
+            uint32 productionDate,
+            uint32 expirationDate,
+            SupplyChain.State state
+        ) = supplyChain.getProduct(3);
 
         // Test sonuçlarını doğrulama
         assertEq(id, 3);
@@ -56,8 +76,16 @@ contract SupplyChainTest is Test {
 
     function testFailUpdateNonexistentProduct() public {
         // Olmayan ürün için güncelleme deneniyor, hata bekliyoruz
-        vm.expectRevert(abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 999));
-        supplyChain.updateProduct(999, "Nonexistent Location", 1000000, 2000000, SupplyChain.State.Produced);
+        vm.expectRevert(
+            abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 999)
+        );
+        supplyChain.updateProduct(
+            999,
+            "Nonexistent Location",
+            1000000,
+            2000000,
+            SupplyChain.State.Produced
+        );
     }
 
     function testInWarehouse() public {
@@ -68,7 +96,7 @@ contract SupplyChainTest is Test {
         supplyChain.inWarehouse(4, "Warehouse Location");
 
         // Ürün durumunu kontrol etme
-        ( , , , , SupplyChain.State state) = supplyChain.getProduct(4);
+        (, , , , SupplyChain.State state) = supplyChain.getProduct(4);
         assertEq(uint(state), 1); // State.InWarehouse => enum index 1
     }
 
@@ -80,7 +108,7 @@ contract SupplyChainTest is Test {
         supplyChain.delivered(5);
 
         // Ürün durumunu kontrol etme
-        ( , , , , SupplyChain.State state) = supplyChain.getProduct(5);
+        (, , , , SupplyChain.State state) = supplyChain.getProduct(5);
         assertEq(uint(state), 2); // State.Delivered => enum index 2
     }
 
@@ -92,25 +120,33 @@ contract SupplyChainTest is Test {
         supplyChain.deleteProduct(6);
 
         // Silindikten sonra, getProduct çağrıldığında bir revert (hata) bekliyoruz
-        vm.expectRevert(abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 6));
+        vm.expectRevert(
+            abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 6)
+        );
         supplyChain.getProduct(6);
     }
 
     function testFailDeleteNonexistentProduct() public {
         // Olmayan ürünü silmeye çalışmak hata verecektir
-        vm.expectRevert(abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 999));
+        vm.expectRevert(
+            abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 999)
+        );
         supplyChain.deleteProduct(999);
     }
 
     function testFailInWarehouseNonexistentProduct() public {
         // Olmayan ürünü depoya almaya çalışmak hata verecektir
-        vm.expectRevert(abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 999));
+        vm.expectRevert(
+            abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 999)
+        );
         supplyChain.inWarehouse(999, "Warehouse Location");
     }
 
     function testFailDeliveredNonexistentProduct() public {
         // Olmayan ürünü teslim etmeye çalışmak hata verecektir
-        vm.expectRevert(abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 999));
+        vm.expectRevert(
+            abi.encodeWithSelector(SupplyChain.ProductNotFound.selector, 999)
+        );
         supplyChain.delivered(999);
     }
 }
