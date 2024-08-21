@@ -16,7 +16,7 @@ const ownerWallets = [
 ];
 
 // Bundler URL'si
-const bundlerUrl = "https://bundler.biconomy.io/api/v2/{11155111(0xaa36a7)}/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44";
+const bundlerUrl = "https://bundler.biconomy.io/api/v2/{11155111}/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44";
 
 // SimpleAccountAPI oluşturulması
 const accountAPIs = ownerWallets.map(wallet => new SimpleAccountAPI({

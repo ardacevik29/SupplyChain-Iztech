@@ -1,0 +1,219 @@
+{
+    "type": "function",
+    "name": "createProduct",
+    "inputs": [
+      { "name": "_productId", "type": "uint32", "internalType": "uint32" },
+      { "name": "_locationInfo", "type": "string", "internalType": "string" },
+      {
+        "name": "_productionDate",
+        "type": "uint32",
+        "internalType": "uint32"
+      },
+      {
+        "name": "_expirationDate",
+        "type": "uint32",
+        "internalType": "uint32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "deleteProduct",
+    "inputs": [
+      { "name": "_productId", "type": "uint32", "internalType": "uint32" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "delivered",
+    "inputs": [
+      { "name": "_productId", "type": "uint32", "internalType": "uint32" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getProduct",
+    "inputs": [
+      { "name": "_productId", "type": "uint32", "internalType": "uint32" }
+    ],
+    "outputs": [
+      { "name": "", "type": "uint32", "internalType": "uint32" },
+      { "name": "", "type": "string", "internalType": "string" },
+      { "name": "", "type": "uint32", "internalType": "uint32" },
+      { "name": "", "type": "uint32", "internalType": "uint32" },
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "enum SupplyChain.State"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "inWarehouse",
+    "inputs": [
+      { "name": "_productId", "type": "uint32", "internalType": "uint32" },
+      { "name": "_newLocation", "type": "string", "internalType": "string" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "updateProduct",
+    "inputs": [
+      { "name": "_productId", "type": "uint32", "internalType": "uint32" },
+      {
+        "name": "_newLocationInfo",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "_newProductionDate",
+        "type": "uint32",
+        "internalType": "uint32"
+      },
+      {
+        "name": "_newExpirationDate",
+        "type": "uint32",
+        "internalType": "uint32"
+      },
+      {
+        "name": "_newState",
+        "type": "uint8",
+        "internalType": "enum SupplyChain.State"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "ProductCreated",
+    "inputs": [
+      {
+        "name": "productId",
+        "type": "uint32",
+        "indexed": true,
+        "internalType": "uint32"
+      },
+      {
+        "name": "locationInfo",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "productionDate",
+        "type": "uint32",
+        "indexed": false,
+        "internalType": "uint32"
+      },
+      {
+        "name": "expirationDate",
+        "type": "uint32",
+        "indexed": false,
+        "internalType": "uint32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ProductDeleted",
+    "inputs": [
+      {
+        "name": "productId",
+        "type": "uint32",
+        "indexed": true,
+        "internalType": "uint32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ProductStateChanged",
+    "inputs": [
+      {
+        "name": "productId",
+        "type": "uint32",
+        "indexed": true,
+        "internalType": "uint32"
+      },
+      {
+        "name": "newState",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum SupplyChain.State"
+      },
+      {
+        "name": "newLocation",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ProductUpdated",
+    "inputs": [
+      {
+        "name": "productId",
+        "type": "uint32",
+        "indexed": true,
+        "internalType": "uint32"
+      },
+      {
+        "name": "locationInfo",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "productionDate",
+        "type": "uint32",
+        "indexed": false,
+        "internalType": "uint32"
+      },
+      {
+        "name": "expirationDate",
+        "type": "uint32",
+        "indexed": false,
+        "internalType": "uint32"
+      },
+      {
+        "name": "state",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum SupplyChain.State"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "ProductAlreadyExists",
+    "inputs": [
+      { "name": "productId", "type": "uint32", "internalType": "uint32" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ProductNotFound",
+    "inputs": [
+      { "name": "productId", "type": "uint32", "internalType": "uint32" }
+    ]
+  }
+
+
+const contractAddress = '0x5fbdb2315678afecb367f032d93f642f64180aa3';

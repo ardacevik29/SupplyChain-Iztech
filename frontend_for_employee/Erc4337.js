@@ -997,7 +997,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } ];
             const entryPointContract = new ethers.Contract(entryPointAddress, entryPointAbi, signer);
 
-            const bundlerProvider = new BundlerProvider('https://bundler.biconomy.io/api/v2/{11155111(0xaa36a7)}/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44', provider);
+            const bundlerProvider = new BundlerProvider('https://bundler.biconomy.io/api/v2/{11155111}/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44', provider);
 
             // Örnek UserOperation nesnesi
             const userOp = new UserOperation({

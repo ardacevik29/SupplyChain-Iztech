@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain DApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #loginContainer, #ownerInterface, #viewerInterface {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        #loginContainer {
+            display: block;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginContainer">
+        <h2>Enter Your ID</h2>
+        <form id="loginForm">
+            <input type="text" id="idNumber" placeholder="Enter ID..." required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="ownerInterface">
+        <h2>Owner Interface</h2>
+        <p>Welcome, Owner!</p>
+        <!-- Owner-specific actions, like creating a product -->
+        <form id="createProductForm">
+            <input type="number" id="productId" placeholder="Product ID" required>
+            <input type="text" id="locationInfo" placeholder="Location Info" required>
+            <input type="number" id="productionDate" placeholder="Production Date (Unix timestamp)" required>
+            <input type="number" id="expirationDate" placeholder="Expiration Date (Unix timestamp)" required>
+            <button type="submit">Create Product</button>
+        </form>
+    </div>
+
+    <div id="viewerInterface">
+        <h2>Viewer Interface</h2>
+        <p>Welcome, Viewer!</p>
+        <!-- Viewer-specific actions, like viewing a product -->
+        <form id="viewProductForm">
+            <input type="number" id="productId" placeholder="Enter Product ID" required>
+            <button type="submit">View Product</button>
+        </form>
+        <div id="productDetails"></div>
+    </div>
+
+    <!-- Correct placement of the script tags -->
+    <script src="index.js"></script>
+
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const idNumber = document.getElementById("idNumber").value;
+            const loginContainer = document.getElementById("loginContainer");
+            const ownerInterface = document.getElementById("ownerInterface");
+            const viewerInterface = document.getElementById("viewerInterface");
+
+            if (ownerAddresses[idNumber] !== undefined) {
+                loginContainer.style.display = "none";
+                ownerInterface.style.display = "block";
+            } else {
+                loginContainer.style.display = "none";
+                viewerInterface.style.display = "block";
+            }
+        });
+
+        document.getElementById("createProductForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const productId = document.getElementById("productId").value;
+            const locationInfo = document.getElementById("locationInfo").value;
+            const productionDate = document.getElementById("productionDate").value;
+            const expirationDate = document.getElementById("expirationDate").value;
+
+            // Owner arayüzü üzerinden ürün oluşturma işlemi
+            try {
+                const tx = await supplyChainContract.createProduct(productId, locationInfo, productionDate, expirationDate);
+                console.log('Transaction Hash:', tx.hash);
+                await tx.wait();
+                alert('Product created successfully');
+            } catch (error) {
+                console.error('Failed to create product:', error);
+                alert('Failed to create product. Please check the console for details.');
+            }
+        });
+
+        document.getElementById("viewProductForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const productId = document.getElementById("productId").value;
+
+            // Viewer arayüzü üzerinden ürün detaylarını görüntüleme
+            try {
+                const productDetails = await getProduct(productId);
+                displayProductDetails(productDetails);
+            } catch (error) {
+                console.error('Failed to fetch product:', error);
+                alert('Failed to fetch product. Please check the console for details.');
+            }
+        });
+    </script>
+</body>
+</html>
